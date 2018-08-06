@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/Block.gd" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 35, 35 )
+
+[node name="Block" type="Area2D"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 1 )
+drop_speed_init = 500.0
+drop_speed_limit = 1000.0
+drop_acceleration = 700.0
+swap_speed = 250.0
+delay_drop = 0.1
+delay_first_drop = 0.0
+delay_destroy = 0.2
+
+[node name="Sprite" type="Sprite" parent="." index="0"]
+
+centered = false
+_sections_unfolded = [ "Offset" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+
+position = Vector2( 35, 35 )
+shape = SubResource( 1 )
+_sections_unfolded = [ "Transform" ]
+
+[connection signal="input_event" from="." to="." method="_on_Block_input_event"]
+
+
